@@ -10,6 +10,7 @@ class Server{
 
         this.paths = {
             counter :     '/api/counter',
+            episodeLocation :     '/api/episodeLocation',
         }
 
         this.middlewares();
@@ -29,6 +30,7 @@ class Server{
 
     route(){
         this.app.use(this.paths.counter, require('../routes/counter'));
+        this.app.use(this.paths.episodeLocation, require('../routes/episodeLocation'));
     }
 
     listen(){
