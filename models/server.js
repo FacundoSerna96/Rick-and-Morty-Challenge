@@ -9,7 +9,7 @@ class Server{
         this.port = process.env.PORT;
 
         this.paths = {
-            
+            counter :     '/api/counter',
         }
 
         this.middlewares();
@@ -28,13 +28,26 @@ class Server{
     }
 
     route(){
-   
+        this.app.use(this.paths.counter, require('../routes/counter'));
     }
 
     listen(){
-        this.app.listen(this.port   , () =>{
-            console.log('Listening at', this.port);
+        this.app.listen(this.port, () =>{
+            this.title();
         }) 
+    }
+
+    title(){
+        console.log(` ██████ ██   ██ ██ ██████   █████  ██   ██ 
+██      ██   ██ ██ ██   ██ ██   ██  ██ ██  
+██      ███████ ██ ██████  ███████   ███   
+██      ██   ██ ██ ██      ██   ██  ██ ██  
+ ██████ ██   ██ ██ ██      ██   ██ ██   ██
+
+░█▀▄░▀█▀░█▀▀░█░█░░░█▀█░█▀█░█▀▄░░░█▄█░█▀█░█▀▄░▀█▀░█░█░░░█▀▀░█░█░█▀█░█░░░█░░░█▀▀░█▀█░█▀▀░█▀▀
+░█▀▄░░█░░█░░░█▀▄░░░█▀█░█░█░█░█░░░█░█░█░█░█▀▄░░█░░░█░░░░█░░░█▀█░█▀█░█░░░█░░░█▀▀░█░█░█░█░█▀▀
+░▀░▀░▀▀▀░▀▀▀░▀░▀░░░▀░▀░▀░▀░▀▀░░░░▀░▀░▀▀▀░▀░▀░░▀░░░▀░░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀`);
+                    console.log('           Listening at', this.port,'!');
     }
 
 }
